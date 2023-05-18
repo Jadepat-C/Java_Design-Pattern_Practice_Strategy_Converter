@@ -12,6 +12,9 @@ public interface ConverterBehavior {
     public double convert(double value);
     
     public String getConverterType();
-
+    
+    public default void display(){
+        System.out.println(this.toString());
+    }
     
 }

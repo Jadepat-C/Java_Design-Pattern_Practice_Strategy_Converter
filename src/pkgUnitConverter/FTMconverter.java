@@ -10,6 +10,15 @@ package pkgUnitConverter;
  */
 public class FTMconverter implements ConverterBehavior {
     private final double convFactor = 3.281;
+    private double feet;
+    
+    public FTMconverter(){
+        this(0);
+    }
+    
+    public FTMconverter(double feet){
+        this.feet = feet;
+    }
     
     @Override
     public double convert(double feet){
@@ -19,5 +28,10 @@ public class FTMconverter implements ConverterBehavior {
     @Override
     public String getConverterType(){
         return "Feet to meter";
+    }
+    
+    @Override
+    public String toString(){
+        return String.format("%5.2f in feet is %5.2f meter", feet, convert(feet));
     }
 }

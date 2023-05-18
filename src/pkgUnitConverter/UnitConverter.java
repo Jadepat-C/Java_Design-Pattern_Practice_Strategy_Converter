@@ -8,17 +8,17 @@ package pkgUnitConverter;
  *
  * @author Jadepat
  */
-public class UnitConverter {
+public class UnitConverter implements ConverterBehavior {
     private double value;
     private ConverterBehavior converterBehavior;
     
     public UnitConverter(){
-        this.converterBehavior = new FCconverter();
+        this(0);
     }
     
     public UnitConverter(double value){
+        this.converterBehavior = new FCconverter(value);
         this.value = value;
-        this.converterBehavior = new FCconverter();
     }
     
     public void changeBehaviorTo(ConverterBehavior converterBehavior){
@@ -33,11 +33,18 @@ public class UnitConverter {
         this.value = value;
     }
     
+    @Override
     public double convert(double value){
         return converterBehavior.convert(value);
     }
 
+    @Override
     public String getConverterType(){
         return this.converterBehavior.getConverterType();
+    }
+    
+    @Override
+    public String toString(){
+        return this.converterBehavior.toString();
     }
 }
