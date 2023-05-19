@@ -8,10 +8,12 @@ package pkgUnitConverter;
  *
  * @author Jadepat
  */
-public class MFTconverter implements ConverterBehavior {
+public class MFTconverter implements Converter {
     
     private final double convFactor = 3.281;
     private double meter;
+    private final String beforeUnit = "meters";
+    private final String afterUnit = "feet";
     
     public MFTconverter(){
         this(0);
@@ -19,6 +21,21 @@ public class MFTconverter implements ConverterBehavior {
     
     public MFTconverter(double meter){
         this.meter = meter;
+    }
+    
+    @Override
+    public double getValue(){
+        return meter;
+    }
+    
+    @Override
+    public String getBeforeUnit(){
+        return beforeUnit;
+    }
+    
+    @Override
+    public String getAfterUnit(){
+        return afterUnit;
     }
     
     @Override

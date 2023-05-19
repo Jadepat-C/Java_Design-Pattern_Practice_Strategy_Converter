@@ -4,17 +4,34 @@ package pkgUnitConverter;
  * class to convert Celsius to Fahrenheit
  * @author kriger
  */
-public class CFconverter implements ConverterBehavior{
+public class CFconverter implements Converter{
 	private final double convFactor=1.8;
 	private final double convOrigin=32.0;
         private double celsius;
+        private final String beforeUnit = "Celsius";
+        private final String afterUnit = "Fahrenheit";
         
         public CFconverter(){
             this(0);
         }
         
-         public CFconverter(double celsius) {
+        public CFconverter(double celsius) {
             this.celsius = celsius;
+        }
+         
+        @Override
+        public double getValue(){
+            return celsius;
+        }
+        
+        @Override
+        public String getBeforeUnit(){
+            return beforeUnit;
+        }
+        
+        @Override
+        public String getAfterUnit(){
+            return afterUnit;
         }
         
 	/**
@@ -31,9 +48,5 @@ public class CFconverter implements ConverterBehavior{
             return "Celsius to Fahrenheit";
         }
         
-        @Override
-        public String toString(){
-            return String.format("%5.2f in Celsius is %5.2f Fahrenheit", celsius, convert(celsius));
-        }
         
 }

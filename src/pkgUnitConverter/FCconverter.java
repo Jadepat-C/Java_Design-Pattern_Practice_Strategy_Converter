@@ -4,10 +4,12 @@ package pkgUnitConverter;
  * class to convert Fahrenheit to Celsius
  * @author kriger
  */
-public class FCconverter implements ConverterBehavior{
+public class FCconverter implements Converter{
 	private final double convFactor=1.8;
 	private final double convOrigin=32.0;
         private double fahrenheit;
+        private final String beforeUnit = "Fahrenheit";
+        private final String afterUnit = "Celsius";
        
         public FCconverter(){
             this(0);
@@ -15,6 +17,21 @@ public class FCconverter implements ConverterBehavior{
         
         public FCconverter(double fahrenheit){
             this.fahrenheit = fahrenheit;
+        }
+        
+        @Override
+        public double getValue(){
+            return fahrenheit;
+        }
+        
+        @Override
+        public String getBeforeUnit(){
+            return beforeUnit;
+        }
+        
+        @Override
+        public String getAfterUnit(){
+            return afterUnit;
         }
         
 	/**
@@ -29,10 +46,5 @@ public class FCconverter implements ConverterBehavior{
         @Override
         public String getConverterType(){
             return "Fahenheit to Celsius";
-        }
-        
-        @Override
-        public String toString() {
-        return String.format("%5.2f in Fahrenheit is %5.2f Celsius", fahrenheit, convert(fahrenheit));
         }
 }

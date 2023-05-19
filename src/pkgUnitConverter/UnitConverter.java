@@ -8,9 +8,9 @@ package pkgUnitConverter;
  *
  * @author Jadepat
  */
-public class UnitConverter implements ConverterBehavior {
+public class UnitConverter {
     private double value;
-    private ConverterBehavior converterBehavior;
+    private Converter converterBehavior;
     
     public UnitConverter(){
         this(0);
@@ -21,7 +21,7 @@ public class UnitConverter implements ConverterBehavior {
         this.value = value;
     }
     
-    public void changeBehaviorTo(ConverterBehavior converterBehavior){
+    public void changeBehaviorTo(Converter converterBehavior){
         this.converterBehavior = converterBehavior;
     }
     
@@ -33,18 +33,28 @@ public class UnitConverter implements ConverterBehavior {
         this.value = value;
     }
     
-    @Override
     public double convert(double value){
         return converterBehavior.convert(value);
     }
 
-    @Override
     public String getConverterType(){
         return this.converterBehavior.getConverterType();
     }
     
     @Override
     public String toString(){
-        return this.converterBehavior.toString();
+        StringBuilder builder = new StringBuilder();
+        builder.append(String.format("%5.2f", converterBehavior.getValue()))
+                .append(" in ")
+                .append(converterBehavior.getBeforeUnit())
+                .append(" is ")
+                .append(String.format("%5.2f", converterBehavior.convert(converterBehavior.getValue())))
+                .append(" ")
+                .append(converterBehavior.getAfterUnit());
+        return builder.toString();
+    }
+    
+    public void display(){
+        System.out.println(this.toString());
     }
 }

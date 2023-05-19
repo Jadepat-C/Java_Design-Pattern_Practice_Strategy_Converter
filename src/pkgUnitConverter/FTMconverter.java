@@ -8,9 +8,11 @@ package pkgUnitConverter;
  *
  * @author Jadepat
  */
-public class FTMconverter implements ConverterBehavior {
+public class FTMconverter implements Converter {
     private final double convFactor = 3.281;
     private double feet;
+    private final String beforeUnit = "feet";
+    private final String afterUnit = "meters";
     
     public FTMconverter(){
         this(0);
@@ -18,6 +20,21 @@ public class FTMconverter implements ConverterBehavior {
     
     public FTMconverter(double feet){
         this.feet = feet;
+    }
+    
+    @Override
+    public double getValue(){
+        return feet;
+    }
+    
+    @Override
+    public String getBeforeUnit(){
+        return beforeUnit;
+    }
+    
+    @Override
+    public String getAfterUnit(){
+        return afterUnit;
     }
     
     @Override
