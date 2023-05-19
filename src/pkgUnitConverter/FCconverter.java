@@ -10,6 +10,7 @@ public class FCconverter implements Converter{
         private double fahrenheit;
         private final String beforeUnit = "Fahrenheit";
         private final String afterUnit = "Celsius";
+        private ConverterUtil converterUtil;
        
         public FCconverter(){
             this(0);
@@ -17,23 +18,9 @@ public class FCconverter implements Converter{
         
         public FCconverter(double fahrenheit){
             this.fahrenheit = fahrenheit;
+            this.converterUtil = new ConverterUtil(fahrenheit,beforeUnit,afterUnit);
         }
-        
-        @Override
-        public double getValue(){
-            return fahrenheit;
-        }
-        
-        @Override
-        public String getBeforeUnit(){
-            return beforeUnit;
-        }
-        
-        @Override
-        public String getAfterUnit(){
-            return afterUnit;
-        }
-        
+
 	/**
 	 * @param fahrenheit value in Fahrenheit to be converted
 	 * @return equivalent in Celsius
@@ -46,5 +33,10 @@ public class FCconverter implements Converter{
         @Override
         public String getConverterType(){
             return "Fahenheit to Celsius";
+        }
+        
+        @Override
+        public ConverterUtil converterUtil(){
+            return converterUtil;
         }
 }

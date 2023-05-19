@@ -14,6 +14,7 @@ public class MFTconverter implements Converter {
     private double meter;
     private final String beforeUnit = "meters";
     private final String afterUnit = "feet";
+    private ConverterUtil converterUtil;
     
     public MFTconverter(){
         this(0);
@@ -21,21 +22,7 @@ public class MFTconverter implements Converter {
     
     public MFTconverter(double meter){
         this.meter = meter;
-    }
-    
-    @Override
-    public double getValue(){
-        return meter;
-    }
-    
-    @Override
-    public String getBeforeUnit(){
-        return beforeUnit;
-    }
-    
-    @Override
-    public String getAfterUnit(){
-        return afterUnit;
+        this.converterUtil = new ConverterUtil(meter,beforeUnit,afterUnit);
     }
     
     @Override
@@ -51,6 +38,11 @@ public class MFTconverter implements Converter {
     @Override
     public String toString(){
         return String.format("%5.2f in meter is %5.2f feet", meter, convert(meter));
+    }
+    
+    @Override
+    public ConverterUtil converterUtil(){
+        return converterUtil;
     }
     
 }

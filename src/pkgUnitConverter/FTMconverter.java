@@ -13,6 +13,7 @@ public class FTMconverter implements Converter {
     private double feet;
     private final String beforeUnit = "feet";
     private final String afterUnit = "meters";
+    private ConverterUtil converterUtil;
     
     public FTMconverter(){
         this(0);
@@ -20,21 +21,7 @@ public class FTMconverter implements Converter {
     
     public FTMconverter(double feet){
         this.feet = feet;
-    }
-    
-    @Override
-    public double getValue(){
-        return feet;
-    }
-    
-    @Override
-    public String getBeforeUnit(){
-        return beforeUnit;
-    }
-    
-    @Override
-    public String getAfterUnit(){
-        return afterUnit;
+        this.converterUtil = new ConverterUtil(feet,beforeUnit,afterUnit);
     }
     
     @Override
@@ -50,5 +37,10 @@ public class FTMconverter implements Converter {
     @Override
     public String toString(){
         return String.format("%5.2f in feet is %5.2f meter", feet, convert(feet));
+    }
+    
+    @Override
+    public ConverterUtil converterUtil(){
+        return converterUtil;
     }
 }

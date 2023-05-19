@@ -10,19 +10,19 @@ package pkgUnitConverter;
  */
 public class UnitConverter {
     private double value;
-    private Converter converterBehavior;
+    private Converter converter;
     
     public UnitConverter(){
         this(0);
     }
     
     public UnitConverter(double value){
-        this.converterBehavior = new FCconverter(value);
+        this.converter = new FCconverter(value);
         this.value = value;
     }
     
     public void changeBehaviorTo(Converter converterBehavior){
-        this.converterBehavior = converterBehavior;
+        this.converter = converterBehavior;
     }
     
     public double getValue(){
@@ -34,27 +34,28 @@ public class UnitConverter {
     }
     
     public double convert(double value){
-        return converterBehavior.convert(value);
+        return converter.convert(value);
     }
 
     public String getConverterType(){
-        return this.converterBehavior.getConverterType();
+        return this.converter.getConverterType();
     }
     
     @Override
     public String toString(){
+        ConverterUtil converterUtil = converter.converterUtil();
         StringBuilder builder = new StringBuilder();
-        builder.append(String.format("%5.2f", converterBehavior.getValue()))
+        builder.append(String.format("%5.2f", converterUtil.getValue()))
                 .append(" in ")
-                .append(converterBehavior.getBeforeUnit())
+                .append(converterUtil.getBeforeUnit())
                 .append(" is ")
-                .append(String.format("%5.2f", converterBehavior.convert(converterBehavior.getValue())))
+                .append(String.format("%5.2f", converter.convert(converterUtil.getValue())))
                 .append(" ")
-                .append(converterBehavior.getAfterUnit());
+                .append(converterUtil.getAfterUnit());
         return builder.toString();
     }
     
     public void display(){
-        System.out.println(this.toString());
+        System.out.println(this);
     }
 }

@@ -13,14 +13,6 @@ public interface Converter {
     
     public String getConverterType();
     
-    public double getValue();
-    
-    public String getBeforeUnit();
-    
-    public String getAfterUnit();
-    
-    public default void display(){
-        System.out.println(this.toString());
-    }
+    public ConverterUtil converterUtil();
     
 }
